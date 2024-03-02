@@ -23,13 +23,13 @@ public class Main {
         boolean work = true;
         while (work) {
 
-            System.out.println("Введите желаемый напиток напитка ");
-            System.out.println("1.Coffe ");
-            System.out.println("2.Tea ");
+            System.out.println("Введите желаемый напиток  ");
+            System.out.println("Coffe ");
+            System.out.println("Tea ");
             String line = scanner.nextLine();
             System.out.print("\033[H\033[J");
-            switch (line) {
-                case "Coffe":
+            switch (line.toLowerCase()) {
+                case "coffe":
                     System.out.println("Введите номер желаемого обьема ");
                     System.out.println("1.200мл ");
                     System.out.println("2.300мл ");
@@ -78,7 +78,7 @@ public class Main {
                     System.out.print("\033[H\033[J");
 
                     break;
-                case "Tea":
+                case "tea":
                 System.out.println("Введите номер желаемого обьема ");
                 System.out.println("1.200мл ");
                 System.out.println("2.300мл ");
@@ -129,8 +129,14 @@ public class Main {
                 default:
                     System.out.println("Введен не корректный символ");
             }
-            HotDrink drink = new HotDrink((String)line, vol, t);
-            System.out.println("Product: " + drink.getName() + ", Volume: " + drink.getVolume() + ", Temperature: " + drink.getTemperanure());
+            HotDrink drink = new HotDrink(line, vol, t);
+            System.out.println("Напиток: " + drink.getName().replaceFirst("c","C").replaceFirst("t","T") + ", Обьемом: " + drink.getVolume() + ", Температурой: " + drink.getTemperanure());
+            try {
+                Thread.sleep(5000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            System.out.print("\033[H\033[J");
         }
 
     }
